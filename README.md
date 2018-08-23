@@ -3,34 +3,34 @@
 A FreeRadius Config for WPA2 Enterprise to allow random user/password combinations and put the users into a VLAN.
 Bonus: Define Users and give them custom VLANs.
 
-* Tested with:
- * APs 
-  * Ubiquiti Unifi AC Series
- * Clients
-  * Android Devices
-  * Linux (NetworkManager)
+- Tested with:
+  - APs 
+    - Ubiquiti Unifi AC Series
+  - Clients
+    - Android Devices
+    - Linux (NetworkManager)
 
-* Known Problems/Help needed:
- * iOS Devies
- * MacOS Devices
+- Known Problems/Help needed:
+  - iOS Devies
+  - MacOS Devices
 
 ### Usage
 
-* Install FreeRadius
-* Obtain Certificates (Self signed or Let's Encrypt)
-* Generate a Diffie-Hellman File
+- Install FreeRadius
+- Obtain Certificates (Self signed or Let's Encrypt)
+- Generate a Diffie-Hellman File
 ```
-dhparam -out dh.pem -2 2048
+# openssl dhparam -out dh.pem -2 2048
 ```
-* Edit the following files according to your needs:
- * clients.conf - Add your IP-Ranges and define a shared secret
- * users - Define your VLANs and Users
- * mods-enabled/eap - Link your TLS Certificate and Diffie-Hellman file
-* Connect your devices
+- Edit the following files according to your needs:
+  - clients.conf - Add your IP-Ranges and define a shared secret
+  - users - Define your VLANs and Users
+  - mods-enabled/eap - Link your TLS Certificate and Diffie-Hellman file
+- Connect your devices \o/
 
 ### Connecting
 
-#### Android:
+#### Android
 EAP method: TTLS
 Phase-2 Authentification: PAP
 CA-Certificate: Use system certificates
@@ -77,7 +77,6 @@ method=auto
 [ipv6]
 addr-gen-mode=stable-privacy
 dns-search=
-method=auto
-~                        
+method=auto                       
 ```
 
