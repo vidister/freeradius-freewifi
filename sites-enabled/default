@@ -1,0 +1,46 @@
+server default {
+	listen {
+		type = auth
+		ipaddr = *
+		port = 1812
+		# interface = eth0
+		limit {
+		    max_connections = 2048
+		    lifetime = 0
+		    idle_timeout = 30
+		}
+	}
+
+	authorize {
+		preprocess
+		# auth_log
+		chap
+		mschap
+		eap {
+			ok = return
+		}
+		files
+	}
+
+	authenticate {
+		Auth-Type PAP {
+			pap
+		}
+		Auth-Type CHAP {
+			chap
+		}
+		Auth-Type MS-CHAP {
+			mschap
+		}
+		mschap
+		eap
+	}
+
+	post-auth {
+		update {
+			&reply: += &session-state:
+		}
+		# reply_log
+		remove_reply_message_if_eap
+	}
+}

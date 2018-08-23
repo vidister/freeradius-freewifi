@@ -1,0 +1,58 @@
+# -*- text -*-
+##
+##  eap.conf -- Configuration for EAP types (PEAP, TTLS, etc.)
+##
+##	$Id: f67cbdbff9b6560cec9f68da1adb82b59723d2ef $
+
+eap {
+	default_eap_type = ttls
+	timer_expire     = 60
+	ignore_unknown_eap_types = no
+	cisco_accounting_username_bug = no
+	max_sessions = 1000
+
+	md5 {
+	}
+
+	tls-config tls-common {
+		private_key_file = # PATH TO YOUR PRIVATE KEY
+		certificate_file = # PATH TO YOUR CERT
+		ca_file = /etc/ssl/certs/ca-certificates.crt
+		dh_file = # PATH TO DH-FILE
+		random_file = /dev/urandom
+		cipher_list = "DEFAULT"
+		# If enabled, OpenSSL will use server cipher list
+		# (possibly defined by cipher_list option above)
+		# for choosing right cipher suite rather than
+		# using client-specified list which is OpenSSl default
+		# behavior. Having it set to yes is a current best practice
+		# for TLS
+		cipher_server_preference = no
+		ecdh_curve = "prime256v1"
+	}
+
+	tls {
+		tls = tls-common
+	}
+
+	ttls {
+		tls = tls-common
+		default_eap_type = md5
+		copy_request_to_tunnel = yes
+		use_tunneled_reply = yes
+		proxy_tunneled_request_as_eap = yes
+		virtual_server = "inner-tunnel"
+	}
+
+	peap {
+		tls = tls-common
+		default_eap_type = mschapv2
+		copy_request_to_tunnel = yes
+		use_tunneled_reply = yes
+		proxy_tunneled_request_as_eap = yes
+		virtual_server = "inner-tunnel"
+	}
+
+	mschapv2 {
+	}
+}

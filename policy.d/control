@@ -1,0 +1,29 @@
+#
+#  Send Access-Accept immediately
+#
+accept {
+	update control {
+		&Response-Packet-Type = Access-Accept
+	}
+	handled
+}
+
+#
+#  Send Access-Challenge immediately
+#
+challenge {
+	update control {
+		&Response-Packet-Type = Access-Challenge
+	}
+	handled
+}
+
+#
+#  Send an Accounting-Response immediately
+#
+acct_response {
+	update control {
+		&Response-Packet-Type = Accounting-Response
+	}
+	handled
+}

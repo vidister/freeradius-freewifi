@@ -1,0 +1,7 @@
+files {
+	# The default key attribute to use for matches.  The content
+	# of this attribute is used to match the "name" of the
+	# entry.
+	#key = "%{%{Stripped-User-Name}:-%{User-Name}}"
+	filename = ${confdir}/users
+}

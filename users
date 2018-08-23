@@ -1,0 +1,21 @@
+
+#Put User "foo" into the default vlan
+foo      Auth-Type := Accept, Cleartext-Password := "bar" 
+
+#Put User "mike" into VLAN 23
+mike     Auth-Type := Accept, Cleartext-Password := "correcthorsebatterystaple" 
+         Service-Type = Framed-User,
+         Tunnel-Type = VLAN,
+         Tunnel-Medium-Type = 6,
+         Tunnel-Private-Group-Id = 23
+
+
+#Accept remeaning input and put them to vlan 42
+DEFAULT Auth-Type := Accept
+         Service-Type = Framed-User,
+         Tunnel-Type = VLAN,
+         Tunnel-Medium-Type = 6,
+         Tunnel-Private-Group-Id = 42
+
+
+
