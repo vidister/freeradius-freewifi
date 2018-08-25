@@ -9,10 +9,8 @@ Bonus: Define Users and give them custom VLANs.
   - Clients
     - Android Devices
     - Linux (NetworkManager)
-
-- Known Problems/Help needed:
-  - iOS Devies
-  - MacOS Devices
+    - iOS 11
+    - MacOS High Sierra
 
 ### Usage
 
